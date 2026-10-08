@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRÉPA EXCELLENTIA WANTANSHI — CULTURE GÉNÉRALE RDC</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#07111f,#102a43,#07111f);
+  color:#fff;
+  min-height:100vh;
+}
+
+.container{
+  width:min(950px,94%);
+  margin:auto;
+  padding:25px 0 50px;
+}
+
+.card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  padding:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+  backdrop-filter:blur(12px);
+}
+
+.logo{
+  text-align:center;
+  font-size:15px;
+  letter-spacing:2px;
+  font-weight:bold;
+  color:#60a5fa;
+  margin-bottom:10px;
+}
+
+h1{
+  text-align:center;
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#cbd5e1;
+  margin-bottom:25px;
+  line-height:1.6;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #334155;
+  background:#0f172a;
+  color:white;
+  font-size:16px;
+  margin:12px 0 18px;
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:14px 20px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.start{
+  width:100%;
+  background:#2563eb;
+  color:#fff;
+}
+
+.start:hover{
+  background:#1d4ed8;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
+}
+
+.badge{
+  background:#172554;
+  border:1px solid #1d4ed8;
+  padding:9px 13px;
+  border-radius:999px;
+  font-size:14px;
+}
+
+.timer{
+  background:#3f1d1d;
+  border:1px solid #ef4444;
+  color:#fecaca;
+}
+
+.progress{
+  height:8px;
+  background:#1e293b;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0 25px;
+}
+
+.progress div{
+  height:100%;
+  background:#3b82f6;
+  transition:.3s;
+}
+
+.chapter{
+  color:#60a5fa;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+.question{
+  font-size:21px;
+  line-height:1.5;
+  margin-bottom:22px;
+}
+
+.choice{
+  display:block;
+  width:100%;
+  text-align:left;
+  margin:10px 0;
+  background:#111c2e;
+  border:1px solid #334155;
+  color:white;
+  transition:.2s;
+}
+
+.choice:hover{
+  background:#1e3a5f;
+  border-color:#3b82f6;
+}
+
+.choice.selected{
+  background:#1d4ed8;
+  border-color:#60a5fa;
+}
+
+.next{
+  margin-top:18px;
+  background:#16a34a;
+  color:white;
+  width:100%;
+}
+
+.info{
+  color:#cbd5e1;
+  line-height:1.7;
+  margin-top:15px;
+}
+
+.score{
+  text-align:center;
+  font-size:48px;
+  font-weight:bold;
+  color:#60a5fa;
+  margin:20px 0;
+}
+
+.resultBox{
+  margin-top:20px;
+  background:#0f172a;
+  border-radius:15px;
+  padding:18px;
+}
+
+.resultBox h3{
+  margin-bottom:12px;
+  color:#93c5fd;
+}
+
+.resultBox p{
+  margin:7px 0;
+  line-height:1.5;
+}
+
+.good{
+  color:#4ade80;
+}
+
+.bad{
+  color:#f87171;
+}
+
+.correction{
+  border-left:4px solid #ef4444;
+  background:#111827;
+  padding:15px;
+  margin:12px 0;
+  border-radius:8px;
+  line-height:1.6;
+}
+
+.footer{
+  text-align:center;
+  margin-top:30px;
+  color:#94a3b8;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+  h1{font-size:23px}
+  .question{font-size:18px}
+  .card{padding:18px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ACCUEIL -->
+<div id="home" class="card">
+  <div class="logo">PRÉPA EXCELLENTIA WANTANSHI</div>
+
+  <h1>100 QUESTIONS — CULTURE GÉNÉRALE</h1>
+
+  <div class="subtitle">
+    <b>RDC • AFRIQUE • MONDE • SCIENCES • TECHNOLOGIE • ACTUALITÉ</b><br><br>
+    Une seule bonne réponse par question.<br>
+    Choisis A, B, C ou D.<br>
+    Niveau préparation Excellentia.
+  </div>
+
+  <input id="candidateName" type="text" placeholder="Entre ton nom complet">
+
+  <button class="start" onclick="startTest()">
+    COMMENCER LE TEST
+  </button>
+
+  <div class="info">
+    • 100 questions<br>
+    • 1 minute maximum par question<br>
+    • Passage automatique si le temps est écoulé<br>
+    • Impossible de revenir à une question précédente<br>
+    • Correction détaillée à la fin
+  </div>
+</div>
+
+
+<!-- TEST -->
+<div id="test" class="card hidden">
+
+  <div class="topbar">
+    <div class="badge" id="questionNumber"></div>
+    <div class="badge" id="chapterBadge"></div>
+    <div class="badge timer" id="timer">01:00</div>
+  </div>
+
+  <div class="progress">
+    <div id="progressBar"></div>
+  </div>
+
+  <div class="chapter" id="chapter"></div>
+
+  <div class="question" id="question"></div>
+
+  <div id="choices"></div>
+
+  <button class="next" id="nextButton" onclick="nextQuestion()" disabled>
+    QUESTION SUIVANTE →
+  </button>
+</div>
+
+
+<!-- RESULTATS -->
+<div id="results" class="card hidden">
+
+  <div class="logo">PRÉPA EXCELLENTIA WANTANSHI</div>
+
+  <h1>RÉSULTATS</h1>
+
+  <p id="candidateResult" style="text-align:center;"></p>
+
+  <div class="score" id="finalScore"></div>
+
+  <div class="resultBox">
+    <h3>Résumé</h3>
+    <p id="summary"></p>
+  </div>
+
+  <div class="resultBox">
+    <h3>Résultats par chapitre</h3>
+    <div id="chapterResults"></div>
+  </div>
+
+  <div class="resultBox">
+    <h3>Corrections détaillées</h3>
+    <div id="corrections"></div>
+  </div>
+
+  <div class="resultBox">
+    <h3>Temps total</h3>
+    <p id="totalTime"></p>
+  </div>
+
+  <div class="footer">
+    TEST DE CULTURE GÉNÉRALE — by Nathan
+  </div>
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   100 QUESTIONS — CULTURE GÉNÉRALE
+   ========================================================= */
+
+const questions = [
+
+/* =========================================================
+   RDC — GÉOGRAPHIE : 1 À 12
+   ========================================================= */
+
+{
+chapter:"RDC — Géographie",
+question:"Quelle est la capitale de la République démocratique du Congo ?",
+choices:["Lubumbashi","Kinshasa","Kisangani","Goma"],
+answer:1,
+explanation:"Kinshasa est la capitale politique et administrative de la RDC."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Combien de provinces compte actuellement la RDC ?",
+choices:["11","18","26","30"],
+answer:2,
+explanation:"Depuis le découpage territorial, la RDC compte 26 provinces."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quel est le principal fleuve de la RDC ?",
+choices:["Le Nil","Le Congo","Le Zambèze","Le Niger"],
+answer:1,
+explanation:"Le fleuve Congo est le principal cours d'eau de la RDC et l'un des plus importants d'Afrique."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quel lac est partagé notamment entre la RDC et la Tanzanie ?",
+choices:["Lac Tchad","Lac Victoria","Lac Tanganyika","Lac Turkana"],
+answer:2,
+explanation:"Le lac Tanganyika est partagé par la RDC, la Tanzanie, la Zambie et le Burundi."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quelle ville est le chef-lieu du Haut-Katanga ?",
+choices:["Kolwezi","Likasi","Lubumbashi","Kamina"],
+answer:2,
+explanation:"Lubumbashi est le chef-lieu de la province du Haut-Katanga."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quelle ville est le chef-lieu du Lualaba ?",
+choices:["Kolwezi","Lubumbashi","Kamina","Kalemie"],
+answer:0,
+explanation:"Kolwezi est le chef-lieu du Lualaba."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Dans quelle province se trouve Goma ?",
+choices:["Sud-Kivu","Nord-Kivu","Ituri","Maniema"],
+answer:1,
+explanation:"Goma est le chef-lieu du Nord-Kivu."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Dans quelle province se trouve Bukavu ?",
+choices:["Nord-Kivu","Sud-Kivu","Ituri","Tanganyika"],
+answer:1,
+explanation:"Bukavu est le chef-lieu du Sud-Kivu."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quel volcan est situé près de Goma ?",
+choices:["Nyiragongo","Kilimandjaro","Meru","Cameroun"],
+answer:0,
+explanation:"Le Nyiragongo est un volcan actif situé dans la région de Goma."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quel pays ne partage PAS de frontière terrestre avec la RDC ?",
+choices:["Angola","Zambie","Kenya","Ouganda"],
+answer:2,
+explanation:"La RDC ne partage pas de frontière terrestre avec le Kenya."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quel océan borde la RDC ?",
+choices:["Océan Indien","Océan Atlantique","Océan Pacifique","Océan Arctique"],
+answer:1,
+explanation:"La RDC possède une courte façade sur l'océan Atlantique."
+},
+
+{
+chapter:"RDC — Géographie",
+question:"Quel est le plus grand bassin hydrographique associé au territoire congolais ?",
+choices:["Bassin du Congo","Bassin du Nil","Bassin du Niger","Bassin du Zambèze"],
+answer:0,
+explanation:"Une grande partie de la RDC appartient au bassin du Congo."
+},
+
+
+/* =========================================================
+   RDC — HISTOIRE : 13 À 22
+   ========================================================= */
+
+{
+chapter:"RDC — Histoire",
+question:"À quelle date la RDC a-t-elle accédé à l'indépendance ?",
+choices:["30 juin 1960","17 janvier 1961","24 novembre 1965","30 juin 1965"],
+answer:0,
+explanation:"La République du Congo a accédé à l'indépendance le 30 juin 1960."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"Quel était le nom de la RDC pendant la période coloniale belge ?",
+choices:["Congo français","Congo belge","Congo central","Congo équatorial"],
+answer:1,
+explanation:"Le territoire était appelé Congo belge avant l'indépendance."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"Qui fut le premier Premier ministre du Congo indépendant ?",
+choices:["Joseph Kasa-Vubu","Patrice Lumumba","Mobutu Sese Seko","Moïse Tshombe"],
+answer:1,
+explanation:"Patrice-Émery Lumumba fut le premier Premier ministre du Congo indépendant."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"Qui fut le premier président de la République du Congo indépendant ?",
+choices:["Patrice Lumumba","Joseph Kasa-Vubu","Mobutu","Laurent-Désiré Kabila"],
+answer:1,
+explanation:"Joseph Kasa-Vubu fut le premier président de la République du Congo indépendant."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"Quel événement majeur est associé au 17 janvier 1961 ?",
+choices:["L'indépendance","La mort de Patrice Lumumba","La prise du pouvoir par Mobutu","Le changement de nom en Zaïre"],
+answer:1,
+explanation:"Patrice Lumumba a été assassiné le 17 janvier 1961."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"En quelle année Mobutu prit-il le pouvoir par un coup d'État ?",
+choices:["1960","1963","1965","1971"],
+answer:2,
+explanation:"Mobutu prit le pouvoir le 24 novembre 1965."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"Quel nom le pays adopta-t-il en 1971 ?",
+choices:["République du Congo","Zaïre","Congo-Kinshasa","Congo central"],
+answer:1,
+explanation:"En 1971, le pays prit officiellement le nom de République du Zaïre."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"En quelle année le pays reprit-il le nom de République démocratique du Congo ?",
+choices:["1989","1994","1997","2001"],
+answer:2,
+explanation:"En 1997, après la chute de Mobutu, le pays reprit le nom de RDC."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"Qui renversa Mobutu en 1997 ?",
+choices:["Joseph Kasa-Vubu","Laurent-Désiré Kabila","Étienne Tshisekedi","Joseph Kabila"],
+answer:1,
+explanation:"Laurent-Désiré Kabila prit le pouvoir en 1997."
+},
+
+{
+chapter:"RDC — Histoire",
+question:"Quel accord est particulièrement associé à la fin de la deuxième guerre du Congo ?",
+choices:["Accord de Lusaka","Traité de Versailles","Accord de Dayton","Traité de Rome"],
+answer:0,
+explanation:"L'accord de Lusaka de 1999 constitue un texte majeur du processus de paix lié à la deuxième guerre du Congo."
+},
+
+
+/* =========================================================
+   RDC — INSTITUTIONS : 23 À 30
+   ========================================================= */
+
+{
+chapter:"RDC — Institutions",
+question:"Quel est le régime politique de la RDC selon la Constitution ?",
+choices:["Monarchie constitutionnelle","République fédérale","République démocratique","Empire"],
+answer:2,
+explanation:"La RDC est une République démocratique."
+},
+
+{
+chapter:"RDC — Institutions",
+question:"Quel est le texte juridique suprême de la RDC ?",
+choices:["Le Code pénal","La Constitution","Le Code civil","La loi électorale"],
+answer:1,
+explanation:"La Constitution est la norme juridique suprême de l'État."
+},
+
+{
+chapter:"RDC — Institutions",
+question:"Comment s'appelle le Parlement national de la RDC ?",
+choices:["Congrès national","Parlement","Assemblée fédérale","Conseil national"],
+answer:1,
+explanation:"Le Parlement congolais comprend deux chambres : l'Assemblée nationale et le Sénat."
+},
+
+{
+chapter:"RDC — Institutions",
+question:"Quelles sont les deux chambres du Parlement congolais ?",
+choices:["Sénat et Assemblée nationale","Cour constitutionnelle et Sénat","Gouvernement et Sénat","Assemblée provinciale et Sénat"],
+answer:0,
+explanation:"Le Parlement est composé de l'Assemblée nationale et du Sénat."
+},
+
+{
+chapter:"RDC — Institutions",
+question:"Quelle institution est chargée notamment du contrôle de constitutionnalité ?",
+choices:["Cour constitutionnelle","CENI","Cour militaire","Banque centrale"],
+answer:0,
+explanation:"La Cour constitutionnelle veille notamment au respect de la Constitution dans les matières qui lui sont attribuées."
+},
+
+{
+chapter:"RDC — Institutions",
+question:"Que signifie CENI ?",
+choices:["Commission électorale nationale indépendante","Conseil électoral national indépendant","Commission économique nationale indépendante","Comité électoral national international"],
+answer:0,
+explanation:"CENI signifie Commission électorale nationale indépendante."
+},
+
+{
+chapter:"RDC — Institutions",
+question:"Qui est le chef de l'État en RDC ?",
+choices:["Le Premier ministre","Le président de la République","Le président du Sénat","Le gouverneur"],
+answer:1,
+explanation:"Le président de la République est le chef de l'État."
+},
+
+{
+chapter:"RDC — Institutions",
+question:"Qui dirige le Gouvernement en RDC ?",
+choices:["Le président du Sénat","Le Premier ministre","Le président de l'Assemblée nationale","Le gouverneur de Kinshasa"],
+answer:1,
+explanation:"Le Gouvernement est dirigé par le Premier ministre."
+},
+
+
+/* =========================================================
+   AFRIQUE : 31 À 40
+   ========================================================= */
+
+{
+chapter:"Afrique",
+question:"Quel est le plus grand pays d'Afrique par superficie ?",
+choices:["RDC","Algérie","Soudan","Libye"],
+answer:1,
+explanation:"L'Algérie est le plus grand pays d'Afrique par superficie."
+},
+
+{
+chapter:"Afrique",
+question:"Quel est le plus grand lac d'Afrique par superficie ?",
+choices:["Tanganyika","Victoria","Malawi","Tchad"],
+answer:1,
+explanation:"Le lac Victoria est le plus grand lac d'Afrique par superficie."
+},
+
+{
+chapter:"Afrique",
+question:"Quel est le plus long fleuve d'Afrique ?",
+choices:["Congo","Niger","Nil","Zambèze"],
+answer:2,
+explanation:"Le Nil est généralement considéré comme le plus long fleuve d'Afrique."
+},
+
+{
+chapter:"Afrique",
+question:"Quelle est la capitale de l'Éthiopie ?",
+choices:["Nairobi","Addis-Abeba","Asmara","Khartoum"],
+answer:1,
+explanation:"Addis-Abeba est la capitale de l'Éthiopie."
+},
+
+{
+chapter:"Afrique",
+question:"Où se trouve le siège de l'Union africaine ?",
+choices:["Lagos","Nairobi","Addis-Abeba","Le Caire"],
+answer:2,
+explanation:"Le siège de l'Union africaine se trouve à Addis-Abeba, en Éthiopie."
+},
+
+{
+chapter:"Afrique",
+question:"Quel pays africain est célèbre pour avoir résisté à la colonisation italienne à la bataille d'Adoua en 1896 ?",
+choices:["Éthiopie","Ghana","Kenya","Sénégal"],
+answer:0,
+explanation:"L'Éthiopie vainquit l'Italie à Adoua en 1896."
+},
+
+{
+chapter:"Afrique",
+question:"Quel est le pays le plus peuplé d'Afrique ?",
+choices:["Égypte","Éthiopie","Nigeria","RDC"],
+answer:2,
+explanation:"Le Nigeria est le pays le plus peuplé d'Afrique."
+},
+
+{
+chapter:"Afrique",
+question:"Quel désert couvre une grande partie de l'Afrique du Nord ?",
+choices:["Kalahari","Namib","Sahara","Atacama"],
+answer:2,
+explanation:"Le Sahara est le grand désert d'Afrique du Nord."
+},
+
+{
+chapter:"Afrique",
+question:"Quel canal relie la mer Méditerranée à la mer Rouge ?",
+choices:["Canal de Panama","Canal de Suez","Canal de Mozambique","Canal de Gibraltar"],
+answer:1,
+explanation:"Le canal de Suez relie la Méditerranée à la mer Rouge."
+},
+
+{
+chapter:"Afrique",
+question:"Quel pays est surnommé le « pays des mille collines » ?",
+choices:["Burundi","Rwanda","Ouganda","Éthiopie"],
+answer:1,
+explanation:"Le Rwanda est connu sous le surnom de pays des mille collines."
+},
+
+
+/* =========================================================
+   GÉOGRAPHIE MONDIALE : 41 À 48
+   ========================================================= */
+
+{
+chapter:"Géographie mondiale",
+question:"Quel est le plus grand océan du monde ?",
+choices:["Atlantique","Indien","Pacifique","Arctique"],
+answer:2,
+explanation:"L'océan Pacifique est le plus vaste océan du monde."
+},
+
+{
+chapter:"Géographie mondiale",
+question:"Quelle est la capitale du Japon ?",
+choices:["Kyoto","Tokyo","Osaka","Hiroshima"],
+answer:1,
+explanation:"Tokyo est la capitale du Japon."
+},
+
+{
+chapter:"Géographie mondiale",
+question:"Quel est le plus grand pays du monde par superficie ?",
+choices:["Canada","Chine","États-Unis","Russie"],
+answer:3,
+explanation:"La Russie est le plus grand pays du monde par superficie."
+},
+
+{
+chapter:"Géographie mondiale",
+question:"Quel fleuve traverse l'Égypte ?",
+choices:["Nil","Congo","Gange","Danube"],
+answer:0,
+explanation:"Le Nil traverse l'Égypte et joue un rôle historique majeur dans son développement."
+},
+
+{
+chapter:"Géographie mondiale",
+question:"Quelle est la capitale du Brésil ?",
+choices:["Rio de Janeiro","São Paulo","Brasília","Salvador"],
+answer:2,
+explanation:"Brasília est la capitale du Brésil."
+},
+
+{
+chapter:"Géographie mondiale",
+question:"Sur quel continent se trouve le désert de Gobi ?",
+choices:["Afrique","Asie","Europe","Amérique"],
+answer:1,
+explanation:"Le désert de Gobi se trouve principalement en Mongolie et en Chine."
+},
+
+{
+chapter:"Géographie mondiale",
+question:"Quelle chaîne de montagnes sépare traditionnellement l'Europe de l'Asie ?",
+choices:["Alpes","Andes","Oural","Himalaya"],
+answer:2,
+explanation:"Les monts Oural constituent l'une des limites géographiques traditionnelles entre l'Europe et l'Asie."
+},
+
+{
+chapter:"Géographie mondiale",
+question:"Quel est le plus haut sommet du monde au-dessus du niveau de la mer ?",
+choices:["K2","Kilimandjaro","Everest","Mont Elbrouz"],
+answer:2,
+explanation:"L'Everest est le sommet le plus élevé au-dessus du niveau de la mer."
+},
+
+
+/* =========================================================
+   HISTOIRE MONDIALE : 49 À 55
+   ========================================================= */
+
+{
+chapter:"Histoire mondiale",
+question:"En quelle année la Première Guerre mondiale a-t-elle commencé ?",
+choices:["1912","1914","1916","1918"],
+answer:1,
+explanation:"La Première Guerre mondiale a commencé en 1914."
+},
+
+{
+chapter:"Histoire mondiale",
+question:"En quelle année la Seconde Guerre mondiale s'est-elle terminée ?",
+choices:["1943","1944","1945","1946"],
+answer:2,
+explanation:"La Seconde Guerre mondiale s'est terminée en 1945."
+},
+
+{
+chapter:"Histoire mondiale",
+question:"Quel événement est généralement considéré comme le début de la Révolution française ?",
+choices:["La bataille de Waterloo","La prise de la Bastille","Le traité de Versailles","Le Congrès de Vienne"],
+answer:1,
+explanation:"La prise de la Bastille, le 14 juillet 1789, est un événement emblématique du début de la Révolution française."
+},
+
+{
+chapter:"Histoire mondiale",
+question:"Qui fut le premier homme à marcher sur la Lune ?",
+choices:["Youri Gagarine","Neil Armstrong","Buzz Aldrin","John Glenn"],
+answer:1,
+explanation:"Neil Armstrong marcha sur la Lune en juillet 1969 lors de la mission Apollo 11."
+},
+
+{
+chapter:"Histoire mondiale",
+question:"Quel empire avait Rome pour capitale ?",
+choices:["Empire romain","Empire mongol","Empire ottoman","Empire aztèque"],
+answer:0,
+explanation:"Rome était le centre politique de l'Empire romain."
+},
+
+{
+chapter:"Histoire mondiale",
+question:"Quel mur est devenu un symbole de la division de l'Europe pendant la guerre froide ?",
+choices:["Mur d'Hadrien","Mur de Berlin","Mur de Chine","Mur de Jéricho"],
+answer:1,
+explanation:"Le mur de Berlin symbolisait la division entre Berlin-Est et Berlin-Ouest."
+},
+
+{
+chapter:"Histoire mondiale",
+question:"En quelle année le mur de Berlin est-il tombé ?",
+choices:["1985","1987","1989","1991"],
+answer:2,
+explanation:"Le mur de Berlin est tombé en 1989."
+},
+
+
+/* =========================================================
+   ORGANISATIONS INTERNATIONALES : 56 À 61
+   ========================================================= */
+
+{
+chapter:"Organisations internationales",
+question:"Que signifie ONU ?",
+choices:["Organisation des Nations Unies","Organisation nationale universelle","Office des Nations unifiées","Organisation nouvelle unie"],
+answer:0,
+explanation:"ONU signifie Organisation des Nations Unies."
+},
+
+{
+chapter:"Organisations internationales",
+question:"Où se trouve le siège principal de l'ONU ?",
+choices:["Paris","Genève","New York","Bruxelles"],
+answer:2,
+explanation:"Le siège principal de l'ONU est à New York."
+},
+
+{
+chapter:"Organisations internationales",
+question:"Quel organisme est spécialisé dans la santé au niveau mondial ?",
+choices:["OMS","OMC","UNESCO","FMI"],
+answer:0,
+explanation:"L'OMS est l'Organisation mondiale de la Santé."
+},
+
+{
+chapter:"Organisations internationales",
+question:"Quel organisme est principalement chargé des questions monétaires internationales ?",
+choices:["FMI","UNESCO","OMS","OIT"],
+answer:0,
+explanation:"Le Fonds monétaire international traite notamment des questions de stabilité monétaire et financière."
+},
+
+{
+chapter:"Organisations internationales",
+question:"Que signifie UNESCO ?",
+choices:["Organisation des Nations Unies pour l'éducation, la science et la culture","Union économique des Nations","Organisation mondiale de la culture","Union scientifique africaine"],
+answer:0,
+explanation:"UNESCO signifie Organisation des Nations Unies pour l'éducation, la science et la culture."
+},
+
+{
+chapter:"Organisations internationales",
+question:"Quelle organisation regroupe de nombreux pays africains autour de la coopération continentale ?",
+choices:["Union africaine","OTAN","ASEAN","OPEP"],
+answer:0,
+explanation:"L'Union africaine est l'organisation continentale africaine."
+},
+
+
+/* =========================================================
+   SCIENCES : 62 À 67
+   ========================================================= */
+
+{
+chapter:"Sciences",
+question:"Quelle est la formule chimique de l'eau ?",
+choices:["CO2","H2O","O2","NaCl"],
+answer:1,
+explanation:"Une molécule d'eau contient deux atomes d'hydrogène et un atome d'oxygène : H2O."
+},
+
+{
+chapter:"Sciences",
+question:"Quelle planète est la plus proche du Soleil ?",
+choices:["Vénus","Mars","Mercure","Terre"],
+answer:2,
+explanation:"Mercure est la planète la plus proche du Soleil."
+},
+
+{
+chapter:"Sciences",
+question:"Quelle force attire les objets vers le sol ?",
+choices:["Magnétisme","Gravitation","Friction","Pression"],
+answer:1,
+explanation:"La gravitation terrestre attire les objets vers le centre de la Terre."
+},
+
+{
+chapter:"Sciences",
+question:"Quel gaz est principalement nécessaire à la respiration humaine ?",
+choices:["Azote","Oxygène","Hydrogène","Hélium"],
+answer:1,
+explanation:"L'oxygène est indispensable à la respiration cellulaire humaine."
+},
+
+{
+chapter:"Sciences",
+question:"Quel organe produit principalement l'insuline ?",
+choices:["Foie","Pancréas","Rein","Poumon"],
+answer:1,
+explanation:"L'insuline est principalement produite par les cellules bêta du pancréas."
+},
+
+{
+chapter:"Sciences",
+question:"Quel est le symbole chimique de l'or ?",
+choices:["Ag","Au","Fe","Or"],
+answer:1,
+explanation:"Le symbole chimique de l'or est Au."
+},
+
+
+/* =========================================================
+   CORPS HUMAIN : 68 À 72
+   ========================================================= */
+
+{
+chapter:"Corps humain",
+question:"Combien de chambres possède le cœur humain ?",
+choices:["2","3","4","5"],
+answer:2,
+explanation:"Le cœur possède quatre cavités : deux oreillettes et deux ventricules."
+},
+
+{
+chapter:"Corps humain",
+question:"Quel organe assure principalement les échanges gazeux entre l'air et le sang ?",
+choices:["Foie","Poumons","Estomac","Reins"],
+answer:1,
+explanation:"Les échanges gazeux ont principalement lieu dans les alvéoles pulmonaires."
+},
+
+{
+chapter:"Corps humain",
+question:"Quel est le plus grand organe du corps humain ?",
+choices:["Foie","Peau","Cœur","Poumon"],
+answer:1,
+explanation:"La peau est le plus grand organe du corps humain."
+},
+
+{
+chapter:"Corps humain",
+question:"Quel organe filtre principalement le sang et produit l'urine ?",
+choices:["Rein","Estomac","Cerveau","Pancréas"],
+answer:0,
+explanation:"Les reins filtrent le sang et participent à la production de l'urine."
+},
+
+{
+chapter:"Corps humain",
+question:"Quelle partie du cerveau est particulièrement associée à la coordination des mouvements et à l'équilibre ?",
+choices:["Cervelet","Hypophyse","Moelle épinière","Hippocampe"],
+answer:0,
+explanation:"Le cervelet joue un rôle essentiel dans la coordination motrice et l'équilibre."
+},
+
+
+/* =========================================================
+   ENVIRONNEMENT : 73 À 77
+   ========================================================= */
+
+{
+chapter:"Environnement",
+question:"Quel gaz contribue fortement à l'effet de serre d'origine humaine ?",
+choices:["CO2","O2","Hélium","Argon"],
+answer:0,
+explanation:"Le dioxyde de carbone est un important gaz à effet de serre lié aux activités humaines."
+},
+
+{
+chapter:"Environnement",
+question:"Que signifie biodiversité ?",
+choices:["Diversité du climat uniquement","Diversité du vivant","Diversité des minerais","Diversité des océans uniquement"],
+answer:1,
+explanation:"La biodiversité désigne la diversité des êtres vivants, des espèces et des écosystèmes."
+},
+
+{
+chapter:"Environnement",
+question:"Quel processus permet aux plantes vertes de produire leur matière organique grâce à la lumière ?",
+choices:["Respiration","Photosynthèse","Fermentation","Digestion"],
+answer:1,
+explanation:"Les plantes réalisent la photosynthèse grâce à la lumière."
+},
+
+{
+chapter:"Environnement",
+question:"Le bassin du Congo est particulièrement important pour quelle raison ?",
+choices:["Il constitue uniquement un désert","Il abrite une immense forêt tropicale et une grande biodiversité","Il ne possède aucun cours d'eau","Il est entièrement couvert de glace"],
+answer:1,
+explanation:"Le bassin du Congo abrite l'une des grandes forêts tropicales du monde et une biodiversité exceptionnelle."
+},
+
+{
+chapter:"Environnement",
+question:"Le recyclage permet principalement de :",
+choices:["Augmenter systématiquement les déchets","Réutiliser ou transformer certains déchets","Supprimer toute pollution","Créer de nouveaux océans"],
+answer:1,
+explanation:"Le recyclage permet de valoriser certains déchets et de réduire la consommation de nouvelles matières premières."
+},
+
+
+/* =========================================================
+   LITTÉRATURE / CULTURE : 78 À 82
+   ========================================================= */
+
+{
+chapter:"Littérature / Culture",
+question:"Qui a écrit « Les Misérables » ?",
+choices:["Victor Hugo","Molière","Émile Zola","Albert Camus"],
+answer:0,
+explanation:"Victor Hugo est l'auteur des Misérables."
+},
+
+{
+chapter:"Littérature / Culture",
+question:"Qui est l'auteur de « L'Étranger » ?",
+choices:["Jean-Paul Sartre","Albert Camus","Victor Hugo","Aimé Césaire"],
+answer:1,
+explanation:"Albert Camus a écrit L'Étranger."
+},
+
+{
+chapter:"Littérature / Culture",
+question:"Quel genre littéraire raconte généralement une histoire avec des personnages et une intrigue ?",
+choices:["Roman","Dictionnaire","Encyclopédie","Atlas"],
+answer:0,
+explanation:"Le roman est un genre narratif qui développe généralement une intrigue et des personnages."
+},
+
+{
+chapter:"Littérature / Culture",
+question:"Qui est l'auteur de « Une saison au Congo » ?",
+choices:["Sony Labou Tansi","Aimé Césaire","Chinua Achebe","Wole Soyinka"],
+answer:1,
+explanation:"Aimé Césaire a écrit Une saison au Congo, une pièce consacrée notamment à Patrice Lumumba."
+},
+
+{
+chapter:"Littérature / Culture",
+question:"Quel instrument est traditionnellement associé à la famille des instruments à cordes frappées ?",
+choices:["Piano","Flûte","Trompette","Clarinette"],
+answer:0,
+explanation:"Le piano possède des cordes qui sont frappées par des marteaux."
+},
+
+
+/* =========================================================
+   SPORT : 83 À 86
+   ========================================================= */
+
+{
+chapter:"Sport",
+question:"Combien de joueurs une équipe de football aligne-t-elle normalement sur le terrain au début d'un match ?",
+choices:["9","10","11","12"],
+answer:2,
+explanation:"Une équipe de football aligne normalement 11 joueurs sur le terrain."
+},
+
+{
+chapter:"Sport",
+question:"Combien d'anneaux composent le symbole olympique ?",
+choices:["4","5","6","7"],
+answer:1,
+explanation:"Le symbole olympique est composé de cinq anneaux."
+},
+
+{
+chapter:"Sport",
+question:"Dans quel sport utilise-t-on principalement une raquette et un volant ?",
+choices:["Tennis","Badminton","Golf","Rugby"],
+answer:1,
+explanation:"Le badminton se joue avec une raquette et un volant."
+},
+
+{
+chapter:"Sport",
+question:"Quel pays a remporté la Coupe du monde de football 2022 ?",
+choices:["France","Brésil","Argentine","Allemagne"],
+answer:2,
+explanation:"L'Argentine a remporté la Coupe du monde 2022 au Qatar."
+},
+
+
+/* =========================================================
+   ÉCONOMIE : 87 À 90
+   ========================================================= */
+
+{
+chapter:"Économie",
+question:"Quelle monnaie est utilisée officiellement en RDC ?",
+choices:["Franc CFA","Franc congolais","Dollar congolais","Euro"],
+answer:1,
+explanation:"La monnaie nationale de la RDC est le franc congolais."
+},
+
+{
+chapter:"Économie",
+question:"Que signifie PIB ?",
+choices:["Produit intérieur brut","Produit international bancaire","Programme industriel de base","Plan intérieur budgétaire"],
+answer:0,
+explanation:"PIB signifie Produit intérieur brut."
+},
+
+{
+chapter:"Économie",
+question:"L'inflation désigne principalement :",
+choices:["Une baisse générale et durable des prix","Une hausse générale du niveau des prix","Une disparition de la monnaie","Une hausse automatique des salaires"],
+answer:1,
+explanation:"L'inflation correspond à une hausse générale et durable du niveau des prix."
+},
+
+{
+chapter:"Économie",
+question:"Le cuivre et le cobalt sont particulièrement importants pour quelle province de la RDC ?",
+choices:["Haut-Katanga et Lualaba","Équateur uniquement","Nord-Ubangi uniquement","Kongo Central uniquement"],
+answer:0,
+explanation:"Le Haut-Katanga et le Lualaba sont au cœur de la ceinture cuprifère et cobaltifère du sud-est de la RDC."
+},
+
+
+/* =========================================================
+   TECHNOLOGIE : 91 À 95
+   ========================================================= */
+
+{
+chapter:"Technologie",
+question:"Que signifie « IA » dans le domaine technologique ?",
+choices:["Internet automatique","Intelligence artificielle","Information avancée","Interface automatisée"],
+answer:1,
+explanation:"IA signifie Intelligence artificielle."
+},
+
+{
+chapter:"Technologie",
+question:"Que signifie GPS ?",
+choices:["Global Positioning System","General Phone Service","Global Processing Software","Geographic Private System"],
+answer:0,
+explanation:"GPS signifie Global Positioning System."
+},
+
+{
+chapter:"Technologie",
+question:"Quel langage est principalement utilisé pour structurer une page web ?",
+choices:["HTML","SQL","Python","C++"],
+answer:0,
+explanation:"HTML sert à structurer le contenu d'une page web."
+},
+
+{
+chapter:"Technologie",
+question:"Quel système permet de stocker des données et d'utiliser des services informatiques à distance via Internet ?",
+choices:["Cloud computing","Bluetooth uniquement","USB","Ethernet uniquement"],
+answer:0,
+explanation:"Le cloud computing permet d'utiliser à distance des ressources informatiques via Internet."
+},
+
+{
+chapter:"Technologie",
+question:"La blockchain est principalement une technologie permettant :",
+choices:["De peindre des images","D'enregistrer des données de manière distribuée et vérifiable","De remplacer tous les ordinateurs","De fabriquer des écrans"],
+answer:1,
+explanation:"La blockchain est un registre distribué permettant notamment d'enregistrer et de vérifier des transactions ou données."
+},
+
+
+/* =========================================================
+   ACTUALITÉ RÉCENTE : 96 À 100
+   ========================================================= */
+
+{
+chapter:"Actualité récente",
+question:"Qui est le président de la République démocratique du Congo en 2026 ?",
+choices:["Joseph Kabila","Félix-Antoine Tshisekedi Tshilombo","Martin Fayulu","Moïse Katumbi"],
+answer:1,
+explanation:"Félix-Antoine Tshisekedi Tshilombo est président de la RDC en 2026. Cette information est confirmée par les communications officielles de la Présidence."
+},
+
+{
+chapter:"Actualité récente",
+question:"Qui est la Première ministre de la RDC en 2026 ?",
+choices:["Judith Suminwa Tuluka","Samia Suluhu Hassan","Louise Mushikiwabo","Nathalie Aziza Munana"],
+answer:0,
+explanation:"Judith Suminwa Tuluka dirige le Gouvernement de la RDC en 2026."
+},
+
+{
+chapter:"Actualité récente",
+question:"Quel fait diplomatique majeur concernant la RDC a eu lieu en juillet 2026 ?",
+choices:[
+"La RDC a quitté l'ONU",
+"La RDC a présidé le Conseil de sécurité de l'ONU",
+"La RDC est devenue membre de l'Union européenne",
+"La RDC a supprimé son ministère des Affaires étrangères"
+],
+answer:1,
+explanation:"La RDC a exercé la présidence tournante du Conseil de sécurité des Nations Unies pendant le mois de juillet 2026, dans le cadre de son mandat de membre non permanent pour 2026-2027."
+},
+
+{
+chapter:"Actualité récente",
+question:"En 2026, pour combien de temps la RDC exerce-t-elle sa présidence tournante du Conseil de sécurité de l'ONU ?",
+choices:["Une semaine","Un mois","Six mois","Un an"],
+answer:1,
+explanation:"La présidence du Conseil de sécurité est exercée à tour de rôle pendant un mois. La RDC a assumé cette fonction pour juillet 2026."
+},
+
+{
+chapter:"Actualité récente",
+question:"Quel grand processus politique a été annoncé par le président Félix Tshisekedi le 28 août 2026 ?",
+choices:[
+"Un dialogue national pour la paix, la cohésion et la refondation de l'État",
+"La suppression du Parlement",
+"La création d'une nouvelle monnaie africaine",
+"La fermeture des frontières nationales"
+],
+answer:0,
+explanation:"Le 28 août 2026, le président Félix Tshisekedi a annoncé l'ouverture d'un Dialogue national pour la paix, la cohésion et la refondation de l'État."
+}
+
+];
+
+
+/* =========================================================
+   VÉRIFICATION AUTOMATIQUE
+   ========================================================= */
+
+if(questions.length !== 100){
+  throw new Error(
+    "ERREUR : le test doit contenir exactement 100 questions. Nombre trouvé : "
+    + questions.length
+  );
+}
+
+questions.forEach((q,i)=>{
+  if(!q.question || !q.chapter){
+    throw new Error("Question "+(i+1)+" incomplète.");
+  }
+
+  if(!Array.isArray(q.choices) || q.choices.length !== 4){
+    throw new Error("Question "+(i+1)+" doit avoir exactement 4 réponses.");
+  }
+
+  if(q.answer < 0 || q.answer > 3){
+    throw new Error("Réponse incorrecte à la question "+(i+1));
+  }
+});
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+let current = 0;
+let selected = null;
+let answers = [];
+let questionTimer;
+let globalTimer;
+let startTime;
+let totalSeconds = 0;
+let candidate = "";
+let antiCheat = 0;
+
+
+/* =========================================================
+   MÉLANGE DES RÉPONSES
+   ========================================================= */
+
+function shuffledQuestion(q){
+
+  let options = q.choices.map((text,index)=>({
+    text:text,
+    original:index
+  }));
+
+  for(let i=options.length-1;i>0;i--){
+    let j=Math.floor(Math.random()*(i+1));
+    [options[i],options[j]]=[options[j],options[i]];
+  }
+
+  return {
+    ...q,
+    shuffledChoices:options,
+    shuffledAnswer:options.findIndex(
+      x=>x.original===q.answer
+    )
+  };
+}
+
+let preparedQuestions = [];
+
+
+/* =========================================================
+   DÉBUT DU TEST
+   ========================================================= */
+
+function startTest(){
+
+  candidate =
+    document.getElementById("candidateName").value.trim()
+    || "Candidat";
+
+  preparedQuestions = questions.map(shuffledQuestion);
+
+  current = 0;
+  selected = null;
+  answers = [];
+  totalSeconds = 0;
+  antiCheat = 0;
+
+  startTime = Date.now();
+
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("test").classList.remove("hidden");
+
+  globalTimer=setInterval(()=>{
+    totalSeconds++;
+  },1000);
+
+  loadQuestion();
+}
+
+
+/* =========================================================
+   AFFICHAGE QUESTION
+   ========================================================= */
+
+function loadQuestion(){
+
+  clearInterval(questionTimer);
+
+  selected=null;
+
+  const q=preparedQuestions[current];
+
+  document.getElementById("questionNumber").textContent =
+    "Question "+(current+1)+" / 100";
+
+  document.getElementById("chapterBadge").textContent =
+    q.chapter;
+
+  document.getElementById("chapter").textContent =
+    q.chapter;
+
+  document.getElementById("question").textContent =
+    q.question;
+
+  const choices=document.getElementById("choices");
+
+  choices.innerHTML="";
+
+  q.shuffledChoices.forEach((choice,index)=>{
+
+    const button=document.createElement("button");
+
+    button.className="choice";
+
+    button.textContent =
+      String.fromCharCode(65+index)+". "+choice.text;
+
+    button.onclick=()=>{
+      chooseAnswer(index,button);
+    };
+
+    choices.appendChild(button);
+  });
+
+  document.getElementById("nextButton").disabled=true;
+
+  document.getElementById("progressBar").style.width =
+    ((current)/100*100)+"%";
+
+  let remaining=60;
+
+  updateTimer(remaining);
+
+  questionTimer=setInterval(()=>{
+
+    remaining--;
+
+    updateTimer(remaining);
+
+    if(remaining<=0){
+
+      clearInterval(questionTimer);
+
+      if(selected===null){
+        answers[current]=null;
+      }
+
+      nextQuestion();
+    }
+
+  },1000);
+}
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
+
+function updateTimer(seconds){
+
+  let min=Math.floor(seconds/60);
+  let sec=seconds%60;
+
+  document.getElementById("timer").textContent =
+    String(min).padStart(2,"0")
+    +":"
+    +String(sec).padStart(2,"0");
+}
+
+
+/* =========================================================
+   CHOIX
+   ========================================================= */
+
+function chooseAnswer(index,button){
+
+  if(selected!==null) return;
+
+  selected=index;
+
+  answers[current]=index;
+
+  document.querySelectorAll(".choice")
+    .forEach(b=>b.classList.remove("selected"));
+
+  button.classList.add("selected");
+
+  document.getElementById("nextButton").disabled=false;
+}
+
+
+/* =========================================================
+   QUESTION SUIVANTE
+   ========================================================= */
+
+function nextQuestion(){
+
+  clearInterval(questionTimer);
+
+  if(current<99){
+
+    current++;
+
+    loadQuestion();
+
+  }else{
+
+    finishTest();
+  }
+}
+
+
+/* =========================================================
+   FIN
+   ========================================================= */
+
+function finishTest(){
+
+  clearInterval(questionTimer);
+  clearInterval(globalTimer);
+
+  totalSeconds =
+    Math.floor((Date.now()-startTime)/1000);
+
+  let score=0;
+
+  questions.forEach((q,i)=>{
+
+    if(
+      answers[i] !== null &&
+      answers[i] !== undefined &&
+      preparedQuestions[i].shuffledChoices[
+        answers[i]
+      ].original === q.answer
+    ){
+      score++;
+    }
+
+  });
+
+  document.getElementById("test").classList.add("hidden");
+  document.getElementById("results").classList.remove("hidden");
+
+  document.getElementById("candidateResult").textContent =
+    "Candidat : "+candidate;
+
+  document.getElementById("finalScore").textContent =
+    score+" / 100";
+
+  document.getElementById("summary").innerHTML =
+    "<b>Pourcentage :</b> "+score+"%<br>"+
+    "<b>Réponses correctes :</b> "+score+"<br>"+
+    "<b>Erreurs :</b> "+(100-score)+"<br>"+
+    "<b>Incidents anti-triche :</b> "+antiCheat;
+
+  generateChapterResults();
+  generateCorrections();
+
+  document.getElementById("totalTime").textContent =
+    formatTime(totalSeconds);
+}
+
+
+/* =========================================================
+   RÉSULTATS PAR CHAPITRE
+   ========================================================= */
+
+function generateChapterResults(){
+
+  const box=document.getElementById("chapterResults");
+
+  box.innerHTML="";
+
+  let stats={};
+
+  questions.forEach((q,i)=>{
+
+    if(!stats[q.chapter]){
+      stats[q.chapter]={
+        total:0,
+        correct:0
+      };
+    }
+
+    stats[q.chapter].total++;
+
+    const given=answers[i];
+
+    if(
+      given!==null &&
+      given!==undefined &&
+      preparedQuestions[i].shuffledChoices[given].original
+      ===q.answer
+    ){
+      stats[q.chapter].correct++;
+    }
+  });
+
+  Object.keys(stats).forEach(chapter=>{
+
+    const s=stats[chapter];
+
+    const p=document.createElement("p");
+
+    p.innerHTML =
+      "<b>"+chapter+"</b> : "
+      +s.correct+" / "+s.total
+      +" ("+
+      Math.round(s.correct/s.total*100)
+      +"%)";
+
+    box.appendChild(p);
+  });
+}
+
+
+/* =========================================================
+   CORRECTIONS
+   ========================================================= */
+
+function generateCorrections(){
+
+  const box=document.getElementById("corrections");
+
+  box.innerHTML="";
+
+  let mistakes=0;
+
+  questions.forEach((q,i)=>{
+
+    const given=answers[i];
+
+    let correct=false;
+
+    if(
+      given!==null &&
+      given!==undefined
+    ){
+
+      correct =
+        preparedQuestions[i].shuffledChoices[given].original
+        ===q.answer;
+    }
+
+    if(!correct){
+
+      mistakes++;
+
+      const correctIndex =
+        preparedQuestions[i].shuffledChoices.findIndex(
+          x=>x.original===q.answer
+        );
+
+      const correctText =
+        preparedQuestions[i]
+        .shuffledChoices[correctIndex]
+        .text;
+
+      let userText="Aucune réponse";
+
+      if(
+        given!==null &&
+        given!==undefined
+      ){
+        userText =
+          preparedQuestions[i]
+          .shuffledChoices[given]
+          .text;
+      }
+
+      const div=document.createElement("div");
+
+      div.className="correction";
+
+      div.innerHTML =
+        "<b>Question "+(i+1)+" — "+q.chapter+"</b><br><br>"+
+        "<b>Question :</b> "+q.question+"<br>"+
+        "<b>Ta réponse :</b> <span class='bad'>"+
+        userText+
+        "</span><br>"+
+        "<b>Bonne réponse :</b> <span class='good'>"+
+        correctText+
+        "</span><br>"+
+        "<b>Explication :</b> "+
+        q.explanation;
+
+      box.appendChild(div);
+    }
+  });
+
+  if(mistakes===0){
+
+    box.innerHTML =
+      "<p class='good'><b>Excellent !</b> "+
+      "Aucune erreur. 100/100.</p>";
+  }
+}
+
+
+/* =========================================================
+   TEMPS
+   ========================================================= */
+
+function formatTime(seconds){
+
+  const h=Math.floor(seconds/3600);
+
+  const m=Math.floor(
+    (seconds%3600)/60
+  );
+
+  const s=seconds%60;
+
+  return (
+    String(h).padStart(2,"0")
+    +":"
+    +String(m).padStart(2,"0")
+    +":"
+    +String(s).padStart(2,"0")
+  );
+}
+
+
+/* =========================================================
+   ANTI-TRICHE
+   ========================================================= */
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+    if(
+      !document.hidden &&
+      !document.getElementById("test")
+        .classList.contains("hidden")
+    ){
+      antiCheat++;
+    }
+  }
+);
+
+window.addEventListener(
+  "beforeunload",
+  e=>{
+    if(
+      !document.getElementById("test")
+        .classList.contains("hidden")
+    ){
+      e.preventDefault();
+      e.returnValue="";
+    }
+  }
+);
+
+history.pushState(null,"",location.href);
+
+window.onpopstate=function(){
+
+  if(
+    !document.getElementById("test")
+      .classList.contains("hidden")
+  ){
+
+    antiCheat++;
+
+    history.pushState(null,"",location.href);
+  }
+};
+
+</script>
+
+</body>
+  </html>
